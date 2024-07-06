@@ -1,11 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
+import TaskList from "./TaskList"
+import { CATEGORIES, TASKS } from "../data";
 
-function Task() {
+
+let id1 = 0
+
+function deleteTask (event) {
+  TASKS.forEach(function(task){
+    task.id= id1++
+  })
+
+  const newTaskList = TASKS.filter(function(task){
+    return task.id != event.target.id
+  })
+}
+
+let id2 = 0
+
+function Task({text, category}) {
   return (
     <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
+      <div className="label">{category}</div>
+      <div className="text">{text}</div>
+      <button onClick={deleteTask} className="delete" id={id2++}>X</button>
     </div>
   );
 }
