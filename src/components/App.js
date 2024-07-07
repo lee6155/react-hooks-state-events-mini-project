@@ -16,8 +16,6 @@ function App() {
     setTaskState(taskList)
   }
 
-  console.log(taskState)
-
   return (
     <div className="App">
       <h2>My tasks</h2>
@@ -28,7 +26,8 @@ function App() {
       <NewTaskForm />
       <TaskList 
         CATEGORIES={CATEGORIES}
-        taskState={taskState}/>
+        taskState={taskState}
+        changeTasks={changeTasks}/>
     </div>
   );
 }
