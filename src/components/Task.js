@@ -2,26 +2,39 @@ import React, {useState, useEffect} from "react";
 import TaskList from "./TaskList"
 import { CATEGORIES, TASKS } from "../data";
 
-
-let id1 = 0
-TASKS.forEach(function(task){
-  task.id= id1++
-})
-
 function Task({text, category, changeTasks}) {
   function deleteTask (event) {
-    const newTaskList = TASKS.filter(function(task){
-      return task.id != event.target.id
+    event.target.id = 'handleClick'
+
+    let buttons = document.getElementsByClassName('delete')
+    let buttons2 = [...buttons]
+
+    let buttonsID = []
+    buttons2.forEach(function(button){
+      buttonsID.push(button.id)
     })
-    changeTasks(newTaskList)
+    
+    let tasks = document.getElementsByClassName('task')
+    let tasks2 = [...tasks]
+    tasks2.forEach(function(task){
+      task.id = 'handleClick'
+    })
+
+    let i = -1
+    tasks2.forEach(function(task){
+      if (task.id === buttonsID[i+=1]){
+        return task.remove()
+      }
+    })
   }
 
-  let id2 = 0
+    // changeTasks(newTaskList)
+  
   return (
     <div className="task">
       <div className="label">{category}</div>
       <div className="text">{text}</div>
-      <button onClick={deleteTask} className="delete" id={id2++}> X </button>
+      <button onClick={deleteTask} className="delete"> X </button>
     </div>
   );
 }

@@ -8,6 +8,8 @@ function TaskList({CATEGORIES, taskState, changeTasks}) {
     return <Task changeTasks={changeTasks} key={task.text} text={task.text} category={task.category}/>
   })
 
+  // const displayTasks2 = <Task category={formData[0]} text={formData[1]}/>
+
   return (
     <div className="tasks">
       {displayTasks}
