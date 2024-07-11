@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import Task from "./Task"
 
 
-function CategoryFilter({CATEGORIES, TASKS, changeTasks}) {
-  const displayButtons = CATEGORIES.map(function(category){
+function CategoryFilter({CATEGORIES, TASKS, ChangeTasks}) {
+  const displayButtons = CATEGORIES?.map(function(category){
     return <button onClick={assignClass} key={category} type="button">{category}</button>
   })
   
@@ -16,7 +16,6 @@ function CategoryFilter({CATEGORIES, TASKS, changeTasks}) {
     setButtonState(selectedButtons2)
   }
 
-  useEffect (() => {
     let buttonNames
     if (buttonState !== "") {
       buttonNames = buttonState.map(function(button){
@@ -26,7 +25,7 @@ function CategoryFilter({CATEGORIES, TASKS, changeTasks}) {
 
     let displayTasksNew = []
     if (buttonState === "" || buttonNames == "All") {
-      displayTasksNew = TASKS.map(function(task){
+      displayTasksNew = TASKS?.map(function(task){
         return task
     })
 
@@ -40,7 +39,8 @@ function CategoryFilter({CATEGORIES, TASKS, changeTasks}) {
       })
     }
 
-  changeTasks(displayTasksNew)
+  useEffect (() => {
+    ChangeTasks(displayTasksNew)
   }, [buttonState])
 
   return (
@@ -74,5 +74,5 @@ export default CategoryFilter;
   //       })
   //     }
 
-  // changeTasks(displayTasksNew)
+  // ChangeTasks(displayTasksNew)
   // }, [eventText])

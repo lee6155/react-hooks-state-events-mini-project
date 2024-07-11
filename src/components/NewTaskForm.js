@@ -6,7 +6,7 @@ function NewTaskForm({CATEGORIES, OnTaskFormSubmit}) {
   const [categoryState, setCategoryState] = useState("")
   const [textState, setTextState] = useState("")
 
-  let dropdown = CATEGORIES.filter(function(category){
+  let dropdown = CATEGORIES?.filter(function(category){
     return category !== "All"
   })
 
@@ -16,7 +16,7 @@ function NewTaskForm({CATEGORIES, OnTaskFormSubmit}) {
 
   function HandleSubmit (event) {
     event.preventDefault()
-    setTextState(event.target[0].value)
+    setTextState(event.target[0]?.value)
   }
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function NewTaskForm({CATEGORIES, OnTaskFormSubmit}) {
       <label>
         Category
         <select onChange={HandleChange} name="category">
-          {dropdown.map(function(category){
+          {dropdown?.map(function(category){
             return <option key={category}>{category}</option>
           })}
         </select>

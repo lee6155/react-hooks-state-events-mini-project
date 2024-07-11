@@ -13,7 +13,7 @@ console.log({ CATEGORIES, TASKS });
 function App() {
   const [taskState, setTaskState] = useState(TASKS)
 
-  function changeTasks (taskList) {
+  function ChangeTasks (taskList) {
     setTaskState(taskList)
   }
   
@@ -30,14 +30,14 @@ function App() {
       <CategoryFilter 
         CATEGORIES={CATEGORIES}
         TASKS={TASKS}
-        changeTasks={changeTasks}/>
+        ChangeTasks={ChangeTasks}/>
       <NewTaskForm 
         CATEGORIES={CATEGORIES}
         OnTaskFormSubmit={OnTaskFormSubmit}/>
       <TaskList 
         CATEGORIES={CATEGORIES}
         taskState={taskState}
-        changeTasks={changeTasks}/>
+        ChangeTasks={ChangeTasks}/>
       <Task category={newTask[0]} text={newTask[1]}/>
     </div>
   );
