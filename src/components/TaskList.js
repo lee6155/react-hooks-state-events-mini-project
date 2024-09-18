@@ -3,8 +3,8 @@ import Task from "./Task"
 import {TasksContext} from "./App"
 
 
-function TaskList({CATEGORIES, taskState, ChangeTasks}) {
-  const displayTasks = taskState?.map(function(task){
+function TaskList({CATEGORIES, tasks, ChangeTasks}) {
+  const displayTasks = tasks?.map(function(task){
     return <Task ChangeTasks={ChangeTasks} key={task.text} text={task.text} category={task.category}/>
   })
 

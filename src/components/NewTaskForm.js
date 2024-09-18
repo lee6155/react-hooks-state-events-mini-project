@@ -2,36 +2,36 @@ import React, {useEffect, useState} from "react";
 import Task from "./Task"
 
 
-function NewTaskForm({CATEGORIES, OnTaskFormSubmit}) {
-  const [categoryState, setCategoryState] = useState("")
-  const [textState, setTextState] = useState("")
+function NewTaskForm({categories, onTaskFormSubmit}) {
+  const [category, setCategory] = useState("")
+  const [text, setText] = useState("")
 
-  let dropdown = CATEGORIES?.filter(function(category){
+  let dropdown = categories?.filter(function(category){
     return category !== "All"
   })
 
-  function HandleChange (event) {
-    setCategoryState(event.target.value)
+  function HandleChangeCategory (event) {
+    setCategory(event.target.value)
+  }
+
+  function HandleChangeText (event) {
+    setText(event.target.value)
   }
 
   function HandleSubmit (event) {
     event.preventDefault()
-    setTextState(event.target[0]?.value)
+    return onTaskFormSubmit({category, text})
   }
-
-  useEffect(() => {
-    OnTaskFormSubmit({categoryState, textState})
-  }, [textState])
 
   return (
     <form onSubmit={HandleSubmit} className="new-task-form">
       <label>
         Details
-        <input type="text" name="text" />
+        <input onChange={HandleChangeText} type="text" name="text" />
       </label>
       <label>
         Category
-        <select onChange={HandleChange} name="category">
+        <select onChange={HandleChangeCategory} name="category">
           {dropdown?.map(function(category){
             return <option key={category}>{category}</option>
           })}

@@ -11,16 +11,12 @@ console.log({ CATEGORIES, TASKS });
 
 
 function App() {
-  const [taskState, setTaskState] = useState(TASKS)
-
-  function ChangeTasks (taskList) {
-    setTaskState(taskList)
-  }
+  const [tasks, setTasks] = useState(TASKS)
   
   const [newTask, setNewTask] = useState("")
 
-  function OnTaskFormSubmit (taskObject) {
-    let formData = [taskObject.categoryState, taskObject.textState]
+  function onTaskFormSubmit (taskObject) {
+    let formData = [taskObject.category, taskObject.text]
     setNewTask(formData)
   }
 
@@ -28,16 +24,16 @@ function App() {
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter 
-        CATEGORIES={CATEGORIES}
-        TASKS={TASKS}
-        ChangeTasks={ChangeTasks}/>
+        categories={CATEGORIES}
+        tasks={tasks}
+        ChangeTasks={setTasks}/>
       <NewTaskForm 
-        CATEGORIES={CATEGORIES}
-        OnTaskFormSubmit={OnTaskFormSubmit}/>
+        categories={CATEGORIES}
+        onTaskFormSubmit={onTaskFormSubmit}/>
       <TaskList 
         CATEGORIES={CATEGORIES}
-        taskState={taskState}
-        ChangeTasks={ChangeTasks}/>
+        tasks={tasks}
+        ChangeTasks={setTasks}/>
       <Task category={newTask[0]} text={newTask[1]}/>
     </div>
   );

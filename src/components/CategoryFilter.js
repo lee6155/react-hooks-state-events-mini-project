@@ -2,36 +2,36 @@ import React, {useState, useEffect} from "react";
 import Task from "./Task"
 
 
-function CategoryFilter({CATEGORIES, TASKS, ChangeTasks}) {
-  const displayButtons = CATEGORIES?.map(function(category){
+function CategoryFilter({categories, tasks, ChangeTasks}) {
+  const displayButtons = categories?.map(function(category){
     return <button onClick={assignClass} key={category} type="button">{category}</button>
   })
   
-  const [buttonState, setButtonState] = useState("")
+  // const [buttonState, setButtonState] = useState("")
+  const [filterState, setFilterState] = useState(tasks)
 
   function assignClass (event) {
     event.target.className = 'selected'
     let selectedButtons = document.getElementsByClassName('selected')
     let selectedButtons2 = [...selectedButtons]
-    setButtonState(selectedButtons2)
-  }
+    // setButtonState(selectedButtons2)
 
     let buttonNames
-    if (buttonState !== "") {
-      buttonNames = buttonState.map(function(button){
+    if (selectedButtons2 !== "") {
+      buttonNames = selectedButtons2.map(function(button){
         return button.textContent
       })
     }
 
     let displayTasksNew = []
-    if (buttonState === "" || buttonNames == "All") {
-      displayTasksNew = TASKS?.map(function(task){
+    if (selectedButtons2 === "" || buttonNames == "All") {
+      displayTasksNew = tasks?.map(function(task){
         return task
-    })
+      })
 
     } else {
       buttonNames.forEach(function(button){
-        TASKS.forEach(function(task){
+        tasks.forEach(function(task){
           if(task.category === button) {
             displayTasksNew.push(task)
           }
@@ -39,9 +39,10 @@ function CategoryFilter({CATEGORIES, TASKS, ChangeTasks}) {
       })
     }
 
-  useEffect (() => {
-    ChangeTasks(displayTasksNew)
-  }, [buttonState])
+    setFilterState(displayTasksNew)
+  }
+
+  ChangeTasks(filterState)
 
   return (
     <div className="categories">
