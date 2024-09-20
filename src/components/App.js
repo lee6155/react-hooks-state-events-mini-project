@@ -20,13 +20,17 @@ function App() {
     setNewTask(formData)
   }
 
+  function ChangeTasks (state){
+    return setTasks(state)
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter 
         categories={CATEGORIES}
         tasks={tasks}
-        ChangeTasks={setTasks}/>
+        ChangeTasks={ChangeTasks}/>
       <NewTaskForm 
         categories={CATEGORIES}
         onTaskFormSubmit={onTaskFormSubmit}/>

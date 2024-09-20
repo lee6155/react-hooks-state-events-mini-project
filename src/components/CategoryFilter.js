@@ -8,7 +8,7 @@ function CategoryFilter({categories, tasks, ChangeTasks}) {
   })
   
   // const [buttonState, setButtonState] = useState("")
-  const [filterState, setFilterState] = useState(tasks)
+  //const [filterState, setFilterState] = useState(tasks)
 
   function assignClass (event) {
     event.target.className = 'selected'
@@ -39,10 +39,10 @@ function CategoryFilter({categories, tasks, ChangeTasks}) {
       })
     }
 
-    setFilterState(displayTasksNew)
+    //setFilterState(displayTasksNew)
+    
+    ChangeTasks(displayTasksNew)
   }
-
-  ChangeTasks(filterState)
 
   return (
     <div className="categories">
